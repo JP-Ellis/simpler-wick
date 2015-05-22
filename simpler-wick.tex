@@ -187,7 +187,9 @@
 \end{VerbatimOut}
 
 \begin{center}
+  \tikzexternaldisable
   \tikz\node[scale=2]{\input{example.out}};
+  \tikzexternalenable
   
   \begin{minipage}{0.65\linewidth}
     \inputminted{latex}{example.out}
