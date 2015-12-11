@@ -1,0 +1,4 @@
+[submodule "pages"]
+	path = pages
+	url = git@github.com:JP-Ellis/simpler-wick.git
+	branch = gh-pages
