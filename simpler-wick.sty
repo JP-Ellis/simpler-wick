@@ -49,9 +49,6 @@
                   \@ifnextchar 8{#1}{
                     \@ifnextchar 9{#1}{#2}}}}}}}}}}
 
-% A count to keep track of how many contraction are currently open.
-\countdef\swick@count=0
-
 % Convert the digit to its representation as a word
 \def\swick@translate#1{%
   \ifcase#1\or
@@ -189,7 +186,6 @@
         #1}
     % Define the variables and commands
     \swick@cond@reset
-    \swick@count=0
     \def\swick@max{0}
     \def\c{\swick@smart}
     % Here is the text
