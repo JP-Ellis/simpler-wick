@@ -1,4 +1,4 @@
-[Simpler-Wick](http://jp-ellis.github.io/simpler-wick)
+[Simpler-Wick](http://www.jpellis.me/projects/simpler-wick) [![ctan.org](https://img.shields.io/ctan/v/simpler-wick.svg)](https://ctan.org/pkg/simpler-wick)
 =======================================================
 
 This package provides simple way of inserting Wick contractions.
