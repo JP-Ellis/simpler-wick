@@ -23,6 +23,7 @@ graphics
 hyperref
 ifplatform
 latex-bin
+latexmk
 lineno
 listings
 lualibs

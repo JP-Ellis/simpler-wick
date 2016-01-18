@@ -20,13 +20,12 @@ before_install:
       mv $(ls | grep install) install-tl
       ./install-tl/install-tl -profile texlive.profile
     fi
-  - ./texlive/bin/x86_64-linux/tlmgr install $(cat .tlmgr-dep)
-  - ./texlive/bin/x86_64-linux/tlmgr update --self
-  - ./texlive/bin/x86_64-linux/tlmgr update --all
+  - export PATH=$(pwd)/texlive/bin/x86_64-linux:$PATH
+  - tlmgr install $(cat .tlmgr-dep)
+  - tlmgr update --self
+  - tlmgr update --all
   # Pygmentize
   - pip install -U --user pygments
 
 script:
-  - |
-    ./texlive/bin/x86_64-linux/lualatex --shell-escape --halt-on-error simpler-wick.tex &&
-    ./texlive/bin/x86_64-linux/lualatex --shell-escape --halt-on-error simpler-wick.tex
+  - latexmk --halt-on-error simpler-wick.tex
