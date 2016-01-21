@@ -6,6 +6,7 @@ Simpler-Wick
 :title: Simpler-Wick
 :slug: simpler-wick
 :date: 2015-12-11
+:sort: 5
 :template: page_index
 :share: True
 :github: https://github.com/JP-Ellis/simpler-wick/
