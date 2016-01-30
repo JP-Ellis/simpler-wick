@@ -76,9 +76,13 @@
 
 % Shortcut to the ith 'if' variable
 \def\swick@settrue@#1{
-  \csname swick@if@\swick@translate{#1}@true\endcsname}
+  \globaldefs=1
+  \csname swick@if@\swick@translate{#1}@true\endcsname
+  \globaldefs=0}
 \def\swick@setfalse@#1{
-  \csname swick@if@\swick@translate{#1}@false\endcsname}
+  \globaldefs=1
+  \csname swick@if@\swick@translate{#1}@false\endcsname
+  \globaldefs=0}
 
 % Returns true or false based on whether the ith.  Use as:
 %
@@ -147,7 +151,7 @@
 \def\swick@begin#1#2{
   % swick@max keeps track of the tallest contraction yet.
   \ifnum\swick@max<#1
-    \def\swick@max{#1}
+    \gdef\swick@max{#1}
   \fi
   \swick@settrue@#1
   \tikzexternaldisable
@@ -186,7 +190,7 @@
         #1}
     % Define the variables and commands
     \swick@cond@reset
-    \def\swick@max{0}
+    \gdef\swick@max{0}
     \def\c{\swick@smart}
     % Here is the text
     #2
