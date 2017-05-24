@@ -33,7 +33,10 @@
   sep/.store in=\swick@sep,
   sep=3pt,
   offset/.store in=\swick@offset,
-  offset=1em}
+  offset=1em
+  % L. new option for specifying line width, currently set to the TikZ default of 0.4pt 
+  conwidth/.store in=\swick@conwidth,
+  conwidth=0.4pt}
 
 \ProcessPgfOptions{/simplerwick}
 
@@ -146,6 +149,26 @@
   \else
     \swick@begin#1{#2}
   \fi}
+  
+%L. Bottom Contraction ADDITION
+% open or close the bottom contraction 
+\def\swick@sbcon{
+	\@ifnextchar0{
+		\swick@ignore
+	}{
+		\swick@ifnextdigit{
+			\swick@sbcon@
+		}{
+			\swick@sbcon@1
+  }}}
+
+\def\swick@sbcon@#1#2{
+	\if\swick@cond@#1
+	\swick@bcend#1{#2}
+	\else
+	\swick@begin#1{#2}
+	\fi}
+
 
 % Open a contraction
 \def\swick@begin#1#2{
@@ -168,11 +191,28 @@
     \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\displaystyle #2$};
   \end{tikzpicture}
   \tikz[remember picture, overlay]
-    \draw ($(swick-open#1.north) + (0, 3pt)$) 
+  % L. added contraction width option, also adjusted the start of the contraction line to be a bit lower, 
+  % while initially fine, it looked a bit off for the bottom contraction so I altered this to be consistent
+    \draw[line width=\swick@conwidth] ($(swick-open#1.north) + (0, 2pt)$) 
           -- ($(swick-open#1.base) + (0, \swick@offset) + #1*(0, \swick@sep)$) 
           -- ($(swick-close#1.base) + (0, \swick@offset) + #1*(0, \swick@sep)$) 
-          -- ($(swick-close#1.north) + (0, 3pt)$);
+          -- ($(swick-close#1.north) + (0, 2pt)$);
   \tikzexternalenable}
+
+%L. open a bottom contraction 
+\def\swick@bcend#1#2{
+	\swick@setfalse@#1
+	\tikzexternaldisable
+	\begin{tikzpicture}[remember picture, baseline=(swick-close#1.base)]
+    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\displaystyle #2$};
+	\end{tikzpicture}
+	\tikz[remember picture, overlay]
+  % 
+    \draw[line width=\swick@conwidth] ($(swick-open#1.base) + (0, -2pt)$) 
+      -- ($(swick-open#1.north) - (0, \swick@offset) + -#1*(0, \swick@sep)$) 
+      -- ($(swick-close#1.north) - (0, \swick@offset) + -#1*(0, \swick@sep)$) 
+      -- ($(swick-close#1.base) + (0, -2pt)$);
+    \tikzexternalenable}
 
 % Start the \wick environment, checking optional arguments if needed.
 \def\wick{
@@ -213,6 +253,51 @@
       be ignore%
     }
   \fi
+}
+
+% L. 
+% above routine for the 'bottom' wick contraction command
+\def\bwick{
+	\@ifnextchar[{
+		\bwick@
+	}{
+		\bwick@[]
+}}
+
+\def\bwick@[#1]#2{
+	\ifmmode
+	\begingroup
+	\pgfkeys{
+		simplerwick,
+		#1}
+	% Define the variables and commands
+	\swick@cond@reset
+	\swick@count=0
+	\def\swick@max{0}
+	\def\b{\swick@sbcon} % this doesn't have to be \b, originally I had defined it so it could be used in the above environment, however
+  % the vertical spacing is not right due to the vbox, so I had to create a new environment so the distinction is no longer necessary 
+  % this might be resolved with some conditional statements, but this works for now.
+	% text here
+	#2
+	% Add a \vtop in stead of \vbox to get the bottom spacing right
+	\dimen0=\swick@sep
+	\multiply\dimen0 by \swick@max
+	\advance\dimen0 by \swick@offset
+	\vtop to \dimen0{}
+	% Check that every has been closed
+	\swick@cond@any{
+		\PackageWarning{simpler-wick}{%
+			I have reached the end of \protect\wick\space with some unclosed
+			contractions%
+		}{}
+	}{}
+	\endgroup
+	\else
+	\PackageWarning{simpler-wick}{%
+		\protect\wich\space has been called outside a math environment, this will
+		be ignore%
+	}
+	\fi
 }
 
 \endinput
