@@ -1,9 +1,6 @@
 selected_scheme scheme-minimal
 TEXDIR ./texlive
-TEXMFCONFIG ~/.texlive2015/texmf-config
-TEXMFHOME ~/texmf
 TEXMFLOCAL ./texlive/texmf-local
 TEXMFSYSCONFIG ./texlive/texmf-config
 TEXMFSYSVAR ./texlive/texmf-var
-TEXMFVAR ~/.texlive2015/texmf-var
 portable 1
