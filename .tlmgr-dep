@@ -32,11 +32,13 @@ luatexbase
 mathtools
 microtype
 minted
+fvextra
+upquote
+framed
 ms
 multirow
 newtx
 oberdiek
-pdftex-def
 pgf
 pgfopts
 siunitx
