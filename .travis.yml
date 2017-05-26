@@ -18,7 +18,7 @@ before_install:
     if [[ ! -e ./texlive/bin/x86_64-linux/tlmgr ]]; then
       wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz -O - | tar -x --gzip
       mv $(ls | grep install) install-tl
-      ./install-tl/install-tl -profile texlive.profile
+      ./install-tl/install-tl -profile .texlive.profile
     fi
   - export PATH=$(pwd)/texlive/bin/x86_64-linux:$PATH
   - tlmgr install $(cat .tlmgr-dep)
