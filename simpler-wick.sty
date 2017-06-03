@@ -24,6 +24,7 @@
 
 \RequirePackage{tikz}
 \RequirePackage{pgfopts}
+\RequirePackage{mathstyle}
 \usetikzlibrary{calc}
 \usetikzlibrary{external}
 
@@ -178,7 +179,7 @@
   \swick@settrue@#1
   \tikzexternaldisable
   \begin{tikzpicture}[remember picture, baseline=(swick-open#1.base)]
-    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-open#1) {$\displaystyle #2$};
+    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-open#1) {$\m@th\currentmathstyle#2$};
   \end{tikzpicture}
   \tikzexternalenable
 }
@@ -187,7 +188,7 @@
   \swick@setfalse@#1
   \tikzexternaldisable
   \begin{tikzpicture}[remember picture, baseline=(swick-close#1.base)]
-    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\displaystyle #2$};
+    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\m@th\currentmathstyle#2$};
   \end{tikzpicture}
   \tikz[remember picture, overlay]
   % L. added contraction width option, also adjusted the start of the contraction line to be a bit lower, 
