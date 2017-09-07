@@ -25,14 +25,26 @@
 % makeatletter
 \edef\simplerwickatcode{\the\catcode`\@}
 \catcode`\@=11
- 
+
 % Definition of \@ifnextchar from LaTeX
+%
+% Scan for the next non-space token and do something depending on
+% whether it matches #1 or not.
+%
+% #1 : token to look for
+% #2 : true code
+% #3 : false code
 \long\def\@ifnextchar#1#2#3{%
   \let\reserved@d=#1%
   \def\reserved@a{#2}%
   \def\reserved@b{#3}%
   \futurelet\@let@token\@ifnch}
- 
+
+% Helper macro to \@ifnextchar
+%
+% This branches for the next token.  If the scanned token is a space
+% (\@sptoken) it keeps on looking.  Otherwise it either branches to the
+% true or false code saved earlier.
 \def\@ifnch{%
   \ifx\@let@token\@sptoken
     \let\reserved@c\@xifnch
@@ -45,9 +57,11 @@
   \fi
   \reserved@c}
 
-%\@sptoken is also in Plain
+% These definitions look like this because we need that explicit space
+% token.  Read the TeXbook for details.
+\def\:{\let\@sptoken= } \:  % this makes \@sptoken a space token
 \def\:{\@xifnch} \expandafter\def\: {\futurelet\@let@token\@ifnch}
- 
+
 % \PackageWarning from LaTeX
 \def\PackageWarning#1#2{%
    \GenericWarning{%
@@ -56,7 +70,7 @@
       Package #1 Warning: #2%
    }%
 }
- 
+
 \def\GenericWarning#1#2{%
    \begingroup
       \def\MessageBreak{^^J#1}%
@@ -64,19 +78,19 @@
       \immediate\write\@unused{^^J#2\on@line.^^J}%
    \endgroup
 }
- 
+
 \newwrite\@unused
 \def\@spaces{\space\space\space\space}
 \def\set@display@protect{\let\protect\string}
 \def\on@line{ on input line \the\inputlineno}
- 
+
 % Externalize is not available in Plain.  Make them no-ops.
 \let\tikzexternalenable\relax
 \let\tikzexternaldisable\relax
- 
+
 % Input the code
 \input simpler-wick.code.tex
- 
+
 % makeatother
 \catcode`\@=\simplerwickatcode
 
