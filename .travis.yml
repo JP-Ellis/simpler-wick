@@ -28,4 +28,5 @@ before_install:
   - pip install -U --user pygments
 
 script:
-  - latexmk --halt-on-error simpler-wick.tex
+  - latexmk --halt-on-error simpler-wick-doc.tex
+  - pdftex --halt-on-error simpler-wick-plain.tex

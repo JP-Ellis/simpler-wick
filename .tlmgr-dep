@@ -50,5 +50,6 @@ tools
 txfonts
 url
 xcolor
+xkeyval
 xstring
 xunicode

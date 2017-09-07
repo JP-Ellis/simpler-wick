@@ -20,18 +20,37 @@
 % details.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ProvidesPackage{simpler-wick}[2015/12/11 Simpler Wick contractions]
+\startmodule simpler-wick
 
-\RequirePackage{tikz}
-\RequirePackage{pgfopts}
-\usetikzlibrary{external}
+\usemodule[tikz]
 
+%\unprotect
+
+% makeatletter
+\edef\simplerwickatcode{\the\catcode`\@}
+\catcode`\@=\lettercatcode
+
+% \@ifnextchar is already in ConTeXt
+\let\@ifnextchar\doifelsenextchar
+ 
+% \PackageWarning using ConTeXt's \showwarning
+\starttexdefinition unexpanded PackageWarning #package #message
+  \begingroup
+    \let\protect\string
+    \showwarning{#package}{ #message on input line \the\inputlineno}{}
+  \endgroup
+\stoptexdefinition
+
+% Externalize is not available in ConTeXt.  Make them no-ops.
+\let\tikzexternalenable\relax
+\let\tikzexternaldisable\relax
+ 
+% Input the code
 \input simpler-wick.code.tex
+ 
+% makeatother
+\catcode`\@=\simplerwickatcode
 
-\ProcessPgfOptions{/simplerwick}
+%\protect
 
-\endinput
-
-% Local Variables:
-% TeX-master: "simpler-wick-doc"
-% End:
+\stopmodule
