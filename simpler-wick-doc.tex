@@ -2,7 +2,7 @@
 %
 % Simpler-Wick
 % Simpler Wick contractions in LaTeX
-% Copyright (C) 2015  Joshua Ellis
+% Copyright (C) 2018  Joshua Ellis
 %
 %
 % This LaTeX file is free: you can redistribute it and/or modify it under the
@@ -305,13 +305,14 @@ contraction, |\cN| start another contraction.
   \end{equation}
 \end{example}
 
-The package has two options: |sep| and |offset|.  |sep| is
-the distance separating each level and |offset| is the base offset.  By default,
-|\sep=3pt| and |\offset=1em|, but they can be changed globally by specifying
-them as package variables:
+The package has three options: |line width|, |sep| and |offset|.  |line width|
+determines the thickness of the contraction lines; |sep| is the distance
+separating each level; and |offset| is the base offset.  By default,
+|linewidth=0.4pt|, |sep=3pt| and |offset=1em|, but they can be changed globally
+by specifying them as package variables:
 
 \begin{minted}{latex}
-\usepackage[sep=5pt, offset=1.5em]{simpler-wick}
+\usepackage[sep=5pt, offset=1.5em, line width=1pt]{simpler-wick}
 \end{minted}
 
 Or you can specify them as optional argument to |\wick|.  This is particularly
@@ -320,6 +321,12 @@ useful if you have some tall symbols within your Wick contraction:
 \begin{example}
   \begin{equation}
     \wick[offset=2em]{\c\phi \int \frac{dx}{x} \c\phi}
+  \end{equation}
+\end{example}
+
+\begin{example}
+  \begin{equation}
+    \wick[line width=1.5pt]{\c\phi A \c\phi}
   \end{equation}
 \end{example}
 

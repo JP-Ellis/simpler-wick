@@ -1,9 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Simpler Wick Contractions
-% Copyright (C) 2014  Joshua Ellis
-%
-% An simpler implementation of the Wick contractions.
+% Simpler-Wick
+% Simpler Wick contractions in LaTeX
+% Copyright (C) 2018  Joshua Ellis
 %
 %
 % This work may be distributed and/or modified under the conditions of the LaTeX
@@ -143,26 +142,6 @@
     \swick@begin#1{#2}
   \fi}
   
-%L. Bottom Contraction ADDITION
-% open or close the bottom contraction 
-\def\swick@sbcon{
-	\@ifnextchar0{
-		\swick@ignore
-	}{
-		\swick@ifnextdigit{
-			\swick@sbcon@
-		}{
-			\swick@sbcon@1
-  }}}
-
-\def\swick@sbcon@#1#2{
-	\if\swick@cond@#1
-	\swick@bcend#1{#2}
-	\else
-	\swick@begin#1{#2}
-	\fi}
-
-
 % Open a contraction
 \def\swick@begin#1#2{
   % swick@max keeps track of the tallest contraction yet.
@@ -184,28 +163,11 @@
     \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\displaystyle #2$};
   \endtikzpicture
   \tikz[remember picture, overlay]
-  % L. added contraction width option, also adjusted the start of the contraction line to be a bit lower, 
-  % while initially fine, it looked a bit off for the bottom contraction so I altered this to be consistent
-    \draw[line width=\swick@lwidth] ($(swick-open#1.north) + (0, 2pt)$) 
+    \draw[line width=\swick@lwidth] ($(swick-open#1.north) + (0, 3pt)$)
           -- ($(swick-open#1.base) + (0, \swick@offset) + #1*(0, \swick@sep)$) 
           -- ($(swick-close#1.base) + (0, \swick@offset) + #1*(0, \swick@sep)$) 
-          -- ($(swick-close#1.north) + (0, 2pt)$);
+          -- ($(swick-close#1.north) + (0, 3pt)$);
   \tikzexternalenable}
-
-%L. open a bottom contraction 
-\def\swick@bcend#1#2{
-	\swick@setfalse@#1
-	\tikzexternaldisable
-	\tikzpicture[remember picture, baseline=(swick-close#1.base)]
-    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\displaystyle #2$};
-	\endtikzpicture
-	\tikz[remember picture, overlay]
-  % 
-    \draw[line width=\swick@lwidth] ($(swick-open#1.base) + (0, -2pt)$) 
-      -- ($(swick-open#1.north) - (0, \swick@offset) + -#1*(0, \swick@sep)$) 
-      -- ($(swick-close#1.north) - (0, \swick@offset) + -#1*(0, \swick@sep)$) 
-      -- ($(swick-close#1.base) + (0, -2pt)$);
-    \tikzexternalenable}
 
 % Start the \wick environment, checking optional arguments if needed.
 \def\wick{
