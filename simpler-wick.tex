@@ -21,6 +21,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input tikz.tex
 
+% Define \refmathstyle and \labelmathstyle as refmathstyle is a LaTeX-only
+% package.
+\let\refmathstyle\relax
+\let\labelmathstyle\relax
+
 % makeatletter
 \edef\simplerwickatcode{\the\catcode`\@}
 \catcode`\@=11

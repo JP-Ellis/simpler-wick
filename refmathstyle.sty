@@ -1,0 +1,207 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This document was originally created by Heiko Oberdeik as a response to [a
+%% question on the TeX StackExchange] with the intent of publishing it on CTAN;
+%% however as of four years past the date of the answer, the package is yet to
+%% be published on CTAN.
+%%
+%% This file is bundled with simpler-wick because it is currently needed.  This
+%% will be removed  but if/when refmathstyle.sty is published.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% This is file `refmathstyle.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% refmathstyle.dtx  (with options: `package')
+%%
+%% This is a generated file.
+%%
+%% Project: refmathstyle
+%% Version: 2013/07/13 v1.0
+%%
+%% Copyright (C) 2013 by
+%%    Heiko Oberdiek <heiko.oberdiek at googlemail.com>
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version. This version of this license is in
+%%    http://www.latex-project.org/lppl/lppl-1-3c.txt
+%% and the latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status "maintained".
+%%
+%% This Current Maintainer of this work is Heiko Oberdiek.
+%%
+%% This work consists of the main source file refmathstyle.dtx
+%% and the derived files
+%%    refmathstyle.sty, refmathstyle.pdf, refmathstyle.ins, refmathstyle.drv,
+%%    refmathstyle.bib, refmathstyle-test1.tex.
+%%
+\begingroup\catcode61\catcode48\catcode32=10\relax%
+  \catcode13=5 % ^^M
+  \endlinechar=13 %
+  \catcode35=6 % #
+  \catcode39=12 % '
+  \catcode44=12 % ,
+  \catcode45=12 % -
+  \catcode46=12 % .
+  \catcode58=12 % :
+  \catcode64=11 % @
+  \catcode123=1 % {
+  \catcode125=2 % }
+  \expandafter\let\expandafter\x\csname ver@refmathstyle.sty\endcsname
+  \ifx\x\relax % plain-TeX, first loading
+  \else
+    \def\empty{}%
+    \ifx\x\empty % LaTeX, first loading,
+      % variable is initialized, but \ProvidesPackage not yet seen
+    \else
+      \expandafter\ifx\csname PackageInfo\endcsname\relax
+        \def\x#1#2{%
+          \immediate\write-1{Package #1 Info: #2.}%
+        }%
+      \else
+        \def\x#1#2{\PackageInfo{#1}{#2, stopped}}%
+      \fi
+      \x{refmathstyle}{The package is already loaded}%
+      \aftergroup\endinput
+    \fi
+  \fi
+\endgroup%
+\begingroup\catcode61\catcode48\catcode32=10\relax%
+  \catcode13=5 % ^^M
+  \endlinechar=13 %
+  \catcode35=6 % #
+  \catcode39=12 % '
+  \catcode40=12 % (
+  \catcode41=12 % )
+  \catcode44=12 % ,
+  \catcode45=12 % -
+  \catcode46=12 % .
+  \catcode47=12 % /
+  \catcode58=12 % :
+  \catcode64=11 % @
+  \catcode91=12 % [
+  \catcode93=12 % ]
+  \catcode123=1 % {
+  \catcode125=2 % }
+  \expandafter\ifx\csname ProvidesPackage\endcsname\relax
+    \def\x#1#2#3[#4]{\endgroup
+      \immediate\write-1{Package: #3 #4}%
+      \xdef#1{#4}%
+    }%
+  \else
+    \def\x#1#2[#3]{\endgroup
+      #2[{#3}]%
+      \ifx#1\@undefined
+        \xdef#1{#3}%
+      \fi
+      \ifx#1\relax
+        \xdef#1{#3}%
+      \fi
+    }%
+  \fi
+\expandafter\x\csname ver@refmathstyle.sty\endcsname
+\ProvidesPackage{refmathstyle}%
+  [2013/07/13 v1.0 Get the math style via reference (HO)]%
+\begingroup\catcode61\catcode48\catcode32=10\relax%
+  \catcode13=5 % ^^M
+  \endlinechar=13 %
+  \catcode123=1 % {
+  \catcode125=2 % }
+  \catcode64=11 % @
+  \def\x{\endgroup
+    \expandafter\edef\csname refmathstyle@AtEnd\endcsname{%
+      \endlinechar=\the\endlinechar\relax
+      \catcode13=\the\catcode13\relax
+      \catcode32=\the\catcode32\relax
+      \catcode35=\the\catcode35\relax
+      \catcode61=\the\catcode61\relax
+      \catcode64=\the\catcode64\relax
+      \catcode123=\the\catcode123\relax
+      \catcode125=\the\catcode125\relax
+    }%
+  }%
+\x\catcode61\catcode48\catcode32=10\relax%
+\catcode13=5 % ^^M
+\endlinechar=13 %
+\catcode35=6 % #
+\catcode64=11 % @
+\catcode123=1 % {
+\catcode125=2 % }
+\def\TMP@EnsureCode#1#2{%
+  \edef\refmathstyle@AtEnd{%
+    \refmathstyle@AtEnd
+    \catcode#1=\the\catcode#1\relax
+  }%
+  \catcode#1=#2\relax
+}
+\TMP@EnsureCode{33}{12}% !
+\TMP@EnsureCode{39}{12}% '
+\TMP@EnsureCode{40}{12}% (
+\TMP@EnsureCode{41}{12}% )
+\TMP@EnsureCode{42}{12}% *
+\TMP@EnsureCode{44}{12}% ,
+\TMP@EnsureCode{45}{12}% -
+\TMP@EnsureCode{46}{12}% .
+\TMP@EnsureCode{47}{12}% /
+\TMP@EnsureCode{58}{12}% :
+\TMP@EnsureCode{59}{12}% ;
+\TMP@EnsureCode{60}{12}% <
+\TMP@EnsureCode{62}{12}% >
+\TMP@EnsureCode{63}{12}% ?
+\TMP@EnsureCode{91}{12}% [
+\TMP@EnsureCode{93}{12}% ]
+\TMP@EnsureCode{96}{12}% `
+\edef\refmathstyle@AtEnd{%
+  \refmathstyle@AtEnd
+  \let\noexpand\refmathstyle@AtEnd\noexpand\@undefined
+  \noexpand\endinput
+}
+\RequirePackage{zref-base}[2006/05/03]
+\RequirePackage{protecteddef}[2011/01/31]
+\newcount\refmathstyle@id
+\refmathstyle@id=\z@
+\newcommand*{\therefmathstyle@id}{\the\refmathstyle@id}
+\newcommand*{\refmathstyle@stepid}{%
+  \global\advance\refmathstyle@id\@ne
+}
+\zref@newprop{mathstyle}[]{}
+\ProtectedDef*{\labelmathstyle}[1]{%
+  \edef\refmathstyle@temp{#1}%
+  \ifx\refmathstyle@temp\@empty
+    \refmathstyle@stepid
+    \edef\refmathstyle@temp{\therefmathstyle@id}%
+  \fi
+  \if@filesw
+    \mathchoice
+    {\refmathstyle@label\displaystyle}%
+    {\refmathstyle@label\textstyle}%
+    {\refmathstyle@label\scriptstyle}%
+    {\refmathstyle@label\scriptscriptstyle}%
+  \fi
+}
+\newcommand*{\refmathstyle@label}[1]{%
+  \begingroup
+    \zref@setcurrent{mathstyle}{#1}%
+    \let\@auxout\@mainaux
+    \zref@labelbyprops{refmathstyle@\refmathstyle@temp}{mathstyle}%
+  \endgroup
+}
+\ProtectedDef*{\refmathstyle}[1]{%
+  \edef\refmathstyle@temp{#1}%
+  \ifx\refmathstyle@temp\@empty
+    \edef\refmathstyle@temp{\therefmathstyle@id}%
+  \fi
+  \zref@refused{refmathstyle@\refmathstyle@temp}%
+  \zref@extractdefault{refmathstyle@\refmathstyle@temp}{mathstyle}{}%
+}
+\refmathstyle@AtEnd%
+\endinput
+%%
+%% End of file `refmathstyle.sty'.

@@ -150,8 +150,9 @@
   \fi
   \swick@settrue@#1
   \tikzexternaldisable
+  \labelmathstyle{}
   \tikzpicture[remember picture, baseline=(swick-open#1.base)]
-    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-open#1) {$\displaystyle #2$};
+    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-open#1) {$\refmathstyle{} #2$};
   \endtikzpicture
   \tikzexternalenable
 }
@@ -159,8 +160,9 @@
 \def\swick@end#1#2{
   \swick@setfalse@#1
   \tikzexternaldisable
+  \labelmathstyle{}
   \tikzpicture[remember picture, baseline=(swick-close#1.base)]
-    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\displaystyle #2$};
+    \node[use as bounding box, inner sep=0pt, outer sep=0pt] (swick-close#1) {$\refmathstyle{} #2$};
   \endtikzpicture
   \tikz[remember picture, overlay]
     \draw[line width=\swick@lwidth] ($(swick-open#1.north) + (0, 3pt)$)

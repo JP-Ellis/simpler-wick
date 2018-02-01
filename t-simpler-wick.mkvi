@@ -25,6 +25,11 @@
 
 \usemodule[tikz]
 
+% Define \refmathstyle and \labelmathstyle as refmathstyle is a LaTeX-only
+% package.
+\let\refmathstyle\relax
+\let\labelmathstyle\relax
+
 %\unprotect
 
 % makeatletter

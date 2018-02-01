@@ -205,7 +205,7 @@
 \makeatother
 
 \title{Simpler-Wick}
-\version{1.0.0}
+\version{1.2.0}
 \author{Joshua \textsc{Ellis}}
 \keywords{Wick contractions; TeX; LaTeX; TikZ; Simpler-Wick}
 
@@ -316,7 +316,10 @@ by specifying them as package variables:
 \end{minted}
 
 Or you can specify them as optional argument to |\wick|.  This is particularly
-useful if you have some tall symbols within your Wick contraction:
+useful if you have some tall symbols within your Wick contraction.
+
+\clearpage
+\section{Examples}
 
 \begin{example}
   \begin{equation}
@@ -327,6 +330,22 @@ useful if you have some tall symbols within your Wick contraction:
 \begin{example}
   \begin{equation}
     \wick[line width=1.5pt]{\c\phi A \c\phi}
+  \end{equation}
+\end{example}
+
+Wick contractions can also work in exponents and fractions, but may result in a
+sloped line if the start and end points aren't level.  Note that the following
+code only works on \LaTeX{} and not plain \TeX{}.
+
+\begin{example}
+  \begin{equation}
+    \wick{a^{\c x y \c x}}
+  \end{equation}
+\end{example}
+
+\begin{example}
+  \begin{equation}
+    \wick{\frac{\c x}{y} \times \frac{\c a}{b}}
   \end{equation}
 \end{example}
 
