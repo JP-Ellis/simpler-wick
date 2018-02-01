@@ -5,6 +5,7 @@ babel-english
 booktabs
 boondox
 cleveref
+context
 csquotes
 ctablestack
 doublestroke
@@ -18,6 +19,8 @@ float
 fontspec
 footmisc
 fp
+framed
+fvextra
 geometry
 graphics
 hyperref
@@ -32,9 +35,6 @@ luatexbase
 mathtools
 microtype
 minted
-fvextra
-upquote
-framed
 ms
 multirow
 newtx
@@ -48,6 +48,7 @@ titlesec
 tocloft
 tools
 txfonts
+upquote
 url
 xcolor
 xkeyval
